@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Your Fortune</title>
+</head>
+<link rel="stylesheet" href="static/fortune.css">
+<body>
+    <h1>Your Fortune</h1>
+    <p>{{ fortune }}</p>
+    {% if birth_month %}
+    <p>Your birth month: {{ birth_month }}</p>
+    {% endif %}
+    <a href="/home">Go back</a>
+</body>
+</html>
