@@ -25,8 +25,11 @@ def home():
 @app.route("/fortune")
 def fortune():
     birth_month = request.args.get('birth_month', '')
-    index = len(birth_month) % len(fortunes)
-    thefort = fortunes[index]
+    if len(birth_month) > len(fortunes):
+        thefort = "Unavailable fortune"
+    else:
+        index = len(birth_month) % len(fortunes)
+        thefort = fortunes[index]
     return render_template("fortune.html", fortune=thefort, birth_month=birth_month)
 
 if __name__ == '__main__':
