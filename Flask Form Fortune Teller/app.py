@@ -25,7 +25,7 @@ def home():
 @app.route("/fortune")
 def fortune():
     birth_month = request.args.get('birth_month', '')
-    if len(birth_month) > len(fortunes):
+    if not birth_month:
         thefort = "Unavailable fortune"
     else:
         index = len(birth_month) % len(fortunes)
