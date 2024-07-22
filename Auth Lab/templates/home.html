@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ email }}</h2>
+        <form action="/home" method="POST">
+            <label for="quote">Enter your quote:</label>
+            <input type="text" id="quote" name="quote" required><br><br>
+            <label for="speaker">Who said it?</label>
+            <input type="text" id="speaker" name="speaker" required><br><br>
+            <label for="info">Additional info:</label>
+            <textarea id="info" name="info"></textarea><br><br>
+            <input type="submit" value="Submit Quote">
+        </form>
+        <br>
+        <form action="/signout" method="POST">
+            <button type="submit">Sign Out</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Quotes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='display.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>All Quotes</h2>
+        <ul>
+            {% for quote in quotes %}
+                <li>
+                    <strong>Quote:</strong> {{ quote['quote'] }}<br>
+                    <strong>Speaker:</strong> {{ quote['speaker'] }}<br>
+                    <strong>Info:</strong> {{ quote['info'] }}
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/home">Back to Home</a>
+    </div>
+</body>
+</html>
