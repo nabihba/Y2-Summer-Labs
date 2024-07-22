@@ -10,10 +10,10 @@
     <div class="container">
         <h2>All Quotes</h2>
         <ul>
-            {% for quote in quotes %}
+            {% for key, quote in quotes.items() %}
                 <li>
-                    <strong>Quote:</strong> {{ quote['quote'] }}<br>
-                    <strong>Speaker:</strong> {{ quote['speaker'] }}<br>
+                    <strong>Quote:</strong> {{ quote['text'] }}<br>
+                    <strong>Speaker:</strong> {{ quote['said_by'] }}<br>
                     <strong>Info:</strong> {{ quote['info'] }}
                 </li>
             {% endfor %}

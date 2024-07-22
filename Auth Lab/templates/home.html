@@ -9,17 +9,21 @@
 <body>
     <div class="container">
         <h2>Welcome, {{ email }}</h2>
+        
         <form action="/home" method="POST">
-            <label for="quote">Enter your quote:</label>
+            <label for="quote">Quote:</label><br>
             <input type="text" id="quote" name="quote" required><br><br>
-            <label for="speaker">Who said it?</label>
+            
+            <label for="speaker">Speaker:</label><br>
             <input type="text" id="speaker" name="speaker" required><br><br>
-            <label for="info">Additional info:</label>
-            <textarea id="info" name="info"></textarea><br><br>
-            <input type="submit" value="Submit Quote">
+            
+            <label for="info">Info:</label><br>
+            <input type="text" id="info" name="info"><br><br>
+            
+            <button type="submit">Submit Quote</button>
         </form>
-        <br>
-        <form action="/signout" method="POST">
+
+        <form action="/signout" method="POST" style="margin-top: 20px;">
             <button type="submit">Sign Out</button>
         </form>
     </div>
