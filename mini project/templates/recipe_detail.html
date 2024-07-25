@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe['title'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        {% if 'user' in session %}
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h2>{{ recipe['title'] }}</h2>
+        <p><strong>Ingredients:</strong> {{ recipe['ingredients'] }}</p>
+        <p><strong>Instructions:</strong> {{ recipe['instructions'] }}</p>
+
+        <h3>Comments</h3>
+        <form action="{{ url_for('recipe_detail', recipe_id=request.path.split('/')[-1]) }}" method="post">
+            <textarea name="comment" placeholder="Enter your comment..." required></textarea>
+            <br>
+            <button type="submit">Add Comment</button>
+        </form>
+
+        {% if comments %}
+            <ul>
+            {% for comment_id, comment in comments.items() %}
+                <li><strong>{{ comment['email'] }}</strong>: {{ comment['comment'] }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No comments yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

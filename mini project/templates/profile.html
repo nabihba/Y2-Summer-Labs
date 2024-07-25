@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        {% if 'user' in session %}
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h2>Profile</h2>
+        <p><strong>Email:</strong> {{ user['email'] }}</p>
+        <br/><br/>
+        <center><h3>Your Recipes</h3></center>
+        {% for recipe_id, recipe in recipes.items() %}
+            <div class="recipe">
+                <h3>{{ recipe['title'] }}</h3>
+                <p><strong>Ingredients:</strong> {{ recipe['ingredients'] }}</p>
+                <p><strong>Instructions:</strong> {{ recipe['instructions'] }}</p>
+                <a href="{{ url_for('update_recipe', recipe_id=recipe_id) }}">Update</a>
+                <form action="{{ url_for('delete_recipe', recipe_id=recipe_id) }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

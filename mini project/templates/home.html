@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        {% if 'user' in session %}
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h2>Recipes</h2>
+        <form action="{{ url_for('search') }}" method="post">
+            <input type="text" name="query" placeholder="Search for recipes...">
+            <button type="submit">Search</button>
+        </form>
+        {% for recipe_id, recipe in recipes.items() %}
+            <div class="recipe">
+                <h3><a href="{{ url_for('recipe_detail', recipe_id=recipe_id) }}">{{ recipe['title'] }}</a></h3>
+                <p><strong>Ingredients:</strong> {{ recipe['ingredients'] }}</p>
+                <p><strong>Instructions:</strong> {{ recipe['instructions'] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
